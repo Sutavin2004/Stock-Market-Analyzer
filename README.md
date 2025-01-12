@@ -148,5 +148,3 @@ Implement trend prediction models based on past sentiment data.
 
 # Contact
 Email: sutavin2004@gmail.com
-GitHub: Sutavin Vinothan
-LinkedIn: Sutavin Vinothan
