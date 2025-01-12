@@ -139,8 +139,8 @@ git commit -m "Add new feature"
 ```
 ### Push the Branch
 ```bash
-```
 git push origin feature-name
+```
 ### Open a Pull Request
 # License
 This project is licensed under the MIT License. See the LICENSE file for details.
