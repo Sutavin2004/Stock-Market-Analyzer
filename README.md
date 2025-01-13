@@ -39,7 +39,7 @@ By integrating Hugging Face NLP models, NewsAPI, and Yahoo Finance, this project
 
 ### Clone the Repository
 ```bash
-git clone https://github.com/YOUR_GITHUB/Stock-Market-Sentiment-Analyzer.git
+git clone https://github.com/Sutavin2004/Stock-Market-Sentiment-Analyzer.git
 cd Stock-Market-Sentiment-Analyzer
 ```
 ### Create and Activate Virtual Environment (Optional but Recommended)
