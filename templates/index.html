@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Sentiment Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Stock Market Sentiment Analyzer</h1>
+        <form id="stock-form">
+            <input type="text" id="ticker" name="ticker" placeholder="Enter Stock Ticker (e.g., AAPL)" required>
+            <button type="submit">Analyze</button>
+        </form>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#stock-form").submit(function(event) {
+                event.preventDefault();
+                $("#results").html("<p>Loading...</p>");
+
+                $.ajax({
+                    url: "/analyze",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.error) {
+                            $("#results").html("<p class='error'>" + response.error + "</p>");
+                        } else {
+                            let html = "<h2>Stock: " + response.ticker + "</h2>";
+                            html += "<h3>Current Price: " + response.stock_price + "</h3>";
+                            html += "<h3>Sentiment Analysis:</h3><ul>";
+
+                            response.sentiment_analysis.forEach(function(item) {
+                                html += "<li><strong>" + item.headline + "</strong><br>Sentiment: " 
+                                        + item.sentiment + " (Confidence: " + item.confidence + ")</li>";
+                            });
+
+                            html += "</ul>";
+                            $("#results").html(html);
+                        }
+                    },
+                    error: function() {
+                        $("#results").html("<p class='error'>An error occurred. Please try again.</p>");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
